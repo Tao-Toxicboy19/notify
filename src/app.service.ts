@@ -6,7 +6,6 @@ export class AppService {
   constructor(private readonly notificationGateway: NotificationGateway) {}
 
   getHello(): string {
-    this.notificationGateway.sendMsg('hello world')
     return 'Hello World!';
   }
 }

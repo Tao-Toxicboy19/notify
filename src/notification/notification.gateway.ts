@@ -8,6 +8,7 @@ import {
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { Nofitication } from './types/notify.type';
 
 @WebSocketGateway({
   cors: '*',
@@ -15,8 +16,6 @@ import { Server, Socket } from 'socket.io';
 export class NotificationGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
-  private readonly notis = [];
-
   @WebSocketServer()
   server: Server;
 
@@ -33,7 +32,7 @@ export class NotificationGateway
     console.log('Client disconnected:', client.id);
   }
 
-  sendMsg(msg: string) {
+  sendMsg(msg: Nofitication) {
     this.server.to('toxicboy').emit('notification', msg);
   }
 }
